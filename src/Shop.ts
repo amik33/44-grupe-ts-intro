@@ -41,7 +41,7 @@ export class Shop {
         const product = new Product(++this.lastProductId, name, buyPrice, sellPrice, amount);
         this.inventor.push(product);
 
-        return [false, '✅ Preke prideta'];
+        return [false, 'Preke prideta'];
     }
 
     /**
@@ -60,7 +60,7 @@ export class Shop {
         }
 
         if (!foundProduct) {
-            return [true, `❌ Nepavyko rasti prekes pagal id: ${productId}`];
+            return [true, `Nepavyko rasti prekes pagal id: ${productId}`];
         }
 
         return [false, foundProduct];
@@ -82,10 +82,10 @@ export class Shop {
         const isSold = foundProduct.reduceAmount(amount);
 
         if (!isSold) {
-            return [true, `❌ Nera norimo ${foundProduct.getName()} kiekio: nori ${amount}; turim ${foundProduct.getAmount()}.`];
+            return [true, `Nera norimo ${foundProduct.getName()} kiekio: nori ${amount}; turim ${foundProduct.getAmount()}.`];
         }
 
-        return [false, '✅ Preke parduota'];
+        return [false, 'Preke parduota'];
     }
 
     /**
@@ -102,7 +102,7 @@ export class Shop {
         const foundProduct = result as Product;
         foundProduct.drop();
 
-        return [false, '✅ Atsikratytas prekes likutis'];
+        return [false, 'Atsikratytas prekes likutis'];
     }
 
     /**
@@ -120,7 +120,7 @@ export class Shop {
         const foundProduct = result as Product;
         foundProduct.increaseAmount(amount);
 
-        return [false, '✅ Preke papildyta'];
+        return [false, 'Preke papildyta'];
     }
 
     summary() {

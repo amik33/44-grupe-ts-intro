@@ -40,7 +40,7 @@ function findProductById(productId: number): FuncReturnBoolStr | FuncReturnBoolP
     }
 
     if (!foundProduct) {
-        return [true, `❌ Nepavyko rasti prekes pagal id: ${productId}`];
+        return [true, `Nepavyko rasti prekes pagal id: ${productId}`];
     }
 
     return [false, foundProduct];
@@ -57,7 +57,7 @@ function addProduct(name: string, buyPrice: number, sellPrice: number, amount: n
 
     kioskas.inventor.push(product);
 
-    return [false, '✅ Preke prideta'];
+    return [false, 'Preke prideta'];
 }
 
 function sellProduct(productId: number, amount: number): FuncReturnBoolStr {
@@ -68,12 +68,12 @@ function sellProduct(productId: number, amount: number): FuncReturnBoolStr {
 
     const foundProduct = result as Product;
     if (foundProduct.amount < amount) {
-        return [true, `❌ Nera norimo ${foundProduct.name} kiekio: nori ${amount}; turim ${foundProduct.amount}.`];
+        return [true, `Nera norimo ${foundProduct.name} kiekio: nori ${amount}; turim ${foundProduct.amount}.`];
     }
 
     foundProduct.amount -= amount;
 
-    return [false, '✅ Preke parduota'];
+    return [false, 'Preke parduota'];
 }
 
 function dropProduct(productId: number): FuncReturnBoolStr {
@@ -85,7 +85,7 @@ function dropProduct(productId: number): FuncReturnBoolStr {
     const foundProduct = result as Product;
     foundProduct.amount = 0;
 
-    return [false, '✅ Atsikratytas prekes likutis'];
+    return [false, 'Atsikratytas prekes likutis'];
 }
 
 function fillInventor(productId: number, amount: number): FuncReturnBoolStr {
@@ -97,7 +97,7 @@ function fillInventor(productId: number, amount: number): FuncReturnBoolStr {
     const foundProduct = result as Product;
     foundProduct.amount += amount;
 
-    return [false, '✅ Preke papildyta'];
+    return [false, 'Preke papildyta'];
 }
 
 function summary(): string {

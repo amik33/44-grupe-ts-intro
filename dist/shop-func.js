@@ -18,7 +18,7 @@ function findProductById(productId) {
         }
     }
     if (!foundProduct) {
-        return [true, `❌ Nepavyko rasti prekes pagal id: ${productId}`];
+        return [true, `Nepavyko rasti prekes pagal id: ${productId}`];
     }
     return [false, foundProduct];
 }
@@ -31,7 +31,7 @@ function addProduct(name, buyPrice, sellPrice, amount) {
         amount: amount,
     };
     kioskas.inventor.push(product);
-    return [false, '✅ Preke prideta'];
+    return [false, 'Preke prideta'];
 }
 function sellProduct(productId, amount) {
     const [err, result] = findProductById(productId);
@@ -40,10 +40,10 @@ function sellProduct(productId, amount) {
     }
     const foundProduct = result;
     if (foundProduct.amount < amount) {
-        return [true, `❌ Nera norimo ${foundProduct.name} kiekio: nori ${amount}; turim ${foundProduct.amount}.`];
+        return [true, `Nera norimo ${foundProduct.name} kiekio: nori ${amount}; turim ${foundProduct.amount}.`];
     }
     foundProduct.amount -= amount;
-    return [false, '✅ Preke parduota'];
+    return [false, 'Preke parduota'];
 }
 function dropProduct(productId) {
     const [err, result] = findProductById(productId);
@@ -52,7 +52,7 @@ function dropProduct(productId) {
     }
     const foundProduct = result;
     foundProduct.amount = 0;
-    return [false, '✅ Atsikratytas prekes likutis'];
+    return [false, 'Atsikratytas prekes likutis'];
 }
 function fillInventor(productId, amount) {
     const [err, result] = findProductById(productId);
@@ -61,7 +61,7 @@ function fillInventor(productId, amount) {
     }
     const foundProduct = result;
     foundProduct.amount += amount;
-    return [false, '✅ Preke papildyta'];
+    return [false, 'Preke papildyta'];
 }
 function summary() {
     const listStrings = [];

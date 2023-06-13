@@ -1,0 +1,20 @@
+{
+    "name": "44-grupe-ts-intro",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "ts": "tsc --watch",
+        "dev": "nodemon ./dist",
+        "shop:func": "nodemon ./dist/shop-func.js",
+        "shop:class": "nodemon ./dist/Shop.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Rimantas (https://github.com/belauzas)",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    }
+}

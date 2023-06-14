@@ -129,9 +129,9 @@ function summary(): string {
 
 console.log(intro());
 
-const [err0, msg0] = addProduct('Svogunas', 6, 66, 666);
+const [err0, msg0] = addProduct('Apelsinas', 6, 66, 666);
 console.log(err0, msg0);
-const [err1, msg1] = addProduct('Labai raudonas pomidoras', 1, 2, 10);
+const [err1, msg1] = addProduct('Pomidoras', 1, 2, 10);
 console.log(err1, msg1);
 const [err2, msg2] = addProduct('Agurkas', 0.5, 1.5, 20);
 console.log(err2, msg2);

@@ -25,6 +25,15 @@ class Product {
         return this.id;
     }
 
+    getDetails() {
+        return {
+            name: this.name,
+            acquisitionPrice: this.acquisitionPrice,
+            sellingPrice: this.sellingPrice,
+            amount: this.amount,
+        };
+    }
+
     getName(): string {
         return this.name;
     }
@@ -33,6 +42,10 @@ class Product {
         return this.amount;
     }
 
+    getSellingPrice(): number {
+        return this.sellingPrice;
+    }
+    
     reduceAmount(amount: number): boolean {
         if (this.amount < amount) {
             return false;

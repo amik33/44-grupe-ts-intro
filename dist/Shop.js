@@ -5,6 +5,7 @@ export class Shop {
     currency;
     lastProductId;
     inventor;
+    profit;
     /**
      *
      * @param {string} name Parduotuves pavadinimas
@@ -19,6 +20,7 @@ export class Shop {
         this.lastProductId = 0;
         /** @type {Product[]} inventor */
         this.inventor = [];
+        this.profit = 0;
     }
     intro() {
         return `Sveiki atvyke i ${this.name}!`;
@@ -71,7 +73,9 @@ export class Shop {
         if (!isSold) {
             return [true, `Nera norimo ${foundProduct.getName()} kiekio: nori ${amount}; turim ${foundProduct.getAmount()}.`];
         }
-        return [false, 'Preke parduota'];
+        const { sellingPrice, acquisitionPrice } = foundProduct.getDetails();
+        this.profit += amount * (sellingPrice - acquisitionPrice);
+        return [false, 'Preke parduota ' + this.profit];
     }
     /**
      *
@@ -102,14 +106,28 @@ export class Shop {
         foundProduct.increaseAmount(amount);
         return [false, 'Preke papildyta'];
     }
+
+    formatMoney(money) {
+        // return `${money.toFixed(2)} ${this.currency}`;
+        let str = '' + money;
+        if (money % 1 === 0) {
+            str += `.00`;
+        }
+        else if (money * 10 % 1 === 0) {
+            str += `0`;
+        }
+        return `${str} ${this.currency}`;
+    }
+
     summary() {
         const listStrings = [];
         const title = `Parduotuves "${this.name}" ataskaita:`;
         let list = 'Nera prekiu.';
         if (this.inventor.length) {
             let i = 0;
-            for (const { name, acquisitionPrice, sellingPrice, amount } of this.inventor) {
-                listStrings.push(`${++i}) ${name}: ${acquisitionPrice}; ${sellingPrice}; ${amount};`);
+            for (const product of this.inventor) {
+                const { name, acquisitionPrice, sellingPrice, amount } = product.getDetails();
+                listStrings.push(`${++i}) ${name}: ${this.formatMoney(acquisitionPrice)}; ${this.formatMoney(sellingPrice)}; ${amount} vnt;`);
             }
             list = listStrings.join('\r\n');
         }
@@ -126,11 +144,11 @@ export class Shop {
 const kioskas = new Shop('Kompas', 'Eur');
 console.log(kioskas.intro());
 console.log(kioskas.summary());
-const [err0, msg0] = kioskas.addProduct('Svogunas', 6, 66, 666);
+const [err0, msg0] = kioskas.addProduct('Apelsinas', 6, 66, 666);
 console.log(err0, msg0);
-const [err1, msg1] = kioskas.addProduct('Labai raudonas pomidoras', 1, 2, 10);
+const [err1, msg1] = kioskas.addProduct('Pomidoras', 1.5, 2.5, 10);
 console.log(err1, msg1);
-const [err2, msg2] = kioskas.addProduct('Agurkas', 0.5, 1.5, 20);
+const [err2, msg2] = kioskas.addProduct('Agurkas', 0.49, 1.49, 20);
 console.log(err2, msg2);
 const [err3, msg3] = kioskas.sellProduct(999, 5);
 console.log(err3, msg3);

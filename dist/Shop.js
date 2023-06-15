@@ -106,7 +106,6 @@ export class Shop {
         foundProduct.increaseAmount(amount);
         return [false, 'Preke papildyta'];
     }
-
     formatMoney(money) {
         // return `${money.toFixed(2)} ${this.currency}`;
         let str = '' + money;
@@ -118,7 +117,6 @@ export class Shop {
         }
         return `${str} ${this.currency}`;
     }
-
     summary() {
         const listStrings = [];
         const title = `Parduotuves "${this.name}" ataskaita:`;
